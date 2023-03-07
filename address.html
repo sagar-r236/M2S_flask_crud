@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+
+{% block head %}
+
+
+    <title>Address page</title>
+
+
+{% endblock %}
+
+
+
+{% block body %}
+
+    <h1>Hi, Welcome to the Address table</h1>
+
+    {% if address1 %}
+        {% for address in address1 %}
+
+        <p>{{ address.id }}</p>
+        <p>{{ address.state }}</p>
+        <p>{{ address.district }}</p>
+
+        {% endfor %}
+    {% else %}
+
+        <p>Nothing's there</p>
+
+    {% endif %}
+
+
+{% endblock %}

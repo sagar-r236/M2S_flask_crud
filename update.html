@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block head %}
+
+    <title>Update</title>
+
+{% endblock %}
+
+
+
+{% block body %}
+
+    <!-- <form action="url_for('update_student', id=)"></form> -->
+    <h1>Update</h1>
+
+    {% if student %}
+    <form action="{{ url_for('update_student', id=student.id)}}" method="post">
+        <label for="name">Name</label>
+        <input type="text" name="name" value="{{ student.name }}"> <br>
+        
+        <select name="address_id">
+            {% for address in address %}
+                {% if student.address_id == address_id %}
+                    <option value="{{ address.id }}" selected>{{ address.id }}</option>
+                {% else %}
+                
+                  <option value="{{ address.id }}">{{ address.id }}</option>
+
+                {% endif %}
+            
+            {% endfor %}
+        </select>
+
+        <input type="submit" value="Update">
+    </form>
+
+    {% endif %}
+    
+
+{% endblock %}

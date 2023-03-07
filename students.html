@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+
+{% block head %}
+
+
+    <title>Students</title>
+
+
+{% endblock %}
+
+
+
+{% block body %}
+
+    <h1>Hi, Welcome to the Address table</h1>
+
+    {% if students %}
+        
+
+            <table>
+                <thead>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Address</th>
+                </thead>
+                {% for student in students %}
+                <tbody>
+                    
+                        <td>{{ student.id }}</td>
+                        <td>{{ student.name }}</td>
+                        <td>{{ student.full_address() }}</td>
+                    
+                 
+                </tbody>
+                {% endfor %}
+            </table>
+
+       
+    {% else %}
+
+        <p>Nothing's there</p>
+
+    {% endif %}
+
+
+{% endblock %}

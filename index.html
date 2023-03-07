@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+
+{% block head %}
+
+    <style>
+        table,th,td {
+            border: 1px solid black;
+        }
+    </style>
+
+{% endblock %}
+
+
+
+{% block body %}
+
+
+<h1>Hi, Welcome to the Students table</h1>
+
+{% if students %}
+
+
+<table>
+    <thead>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Address</th>
+    </thead>
+    {% for student in students %}
+    <tbody>
+
+        <td>{{ student.id }}</td>
+        <td>{{ student.name }}</td>
+        <td>{{ student.full_address() }}</td>
+        <td><a href="{{ url_for('delete_student', id=student.id) }}">Delete </a></td>
+        <td><a href="{{ url_for('update_student', id=student.id)}}">Update</a></td>
+    </tbody>
+    {% endfor %}
+</table>
+
+
+
+
+{% else %}
+
+<p>Nothing's there</p>
+
+{% endif %}
+
+
+<h3>Add Student</h3>
+<form action="{{ url_for('add_student') }}" method="post">
+
+    <label for="id">Id</label>
+    <input type="text" name="id"> <br>
+    <label for="name">Name</label>
+    <input type="text" name="name"> <br>
+    <label for="address">Address</label>
+    
+    <select name="address_id">
+        {% for address in address %}
+        <option value="{{ address.id }}">{{ address.id }}</option>
+        {% endfor %}
+    </select> <br>
+    
+    <input type="submit" value="submit">
+</form>
+
+{% endblock %}
